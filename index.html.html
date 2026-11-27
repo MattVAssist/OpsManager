@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John Matthew Dueñas — Operations and Business Assistance | Fitness Coaching</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #FAF7F0;
+    --surface: #FFFFFF;
+    --sand: #F2ECDF;
+    --border: rgba(11,31,58,0.12);
+    --accent: #0B1F3A;
+    --accent-dark: #06122A;
+    --accent-dim: rgba(11,31,58,0.06);
+    --gold: #C9A24B;
+    --gold-light: #E3C987;
+    --gold-deep: #8A6A1F;
+    --forest: #0B1F3A;
+    --heading: #0B1F3A;
+    --text: #33404F;
+    --muted: #6B7686;
+    --shadow: 0 12px 40px rgba(11,31,58,0.12);
+    --radius: 14px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  .cursor, .cursor-ring { display: none; }
+
+  h1, h2, h3, .nav-logo, .stat-num, .kpi-val, .step-num, .client-title, .service-name, .step-title, .testi-name {
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 3rem;
+    border-bottom: 1px solid var(--border);
+    background: rgba(248,245,240,0.88);
+    backdrop-filter: blur(14px);
+    transition: padding .3s;
+  }
+  .nav-logo { font-weight: 500; font-size: 1.3rem; color: var(--heading); text-decoration: none; display: flex; align-items: center; gap: 0.6rem; }
+  .nav-logo-dot { width: 9px; height: 9px; background: var(--gold); border-radius: 50%; display: inline-block; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { color: var(--text); text-decoration: none; font-size: 0.9rem; transition: color .2s; }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta { background: var(--accent); color: #fff; padding: 0.65rem 1.6rem; font-size: 0.88rem; text-decoration: none; border-radius: 999px; transition: background .2s, transform .2s; }
+  .nav-cta:hover { background: var(--accent-dark); transform: translateY(-1px); }
+
+  section { position: relative; z-index: 1; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 440px;
+    align-items: center;
+    padding: 8rem 3rem 5rem;
+    gap: 4rem;
+    background: linear-gradient(180deg, var(--bg) 0%, var(--sand) 100%);
+  }
+  .hero-left { }
+  .hero-right { display: flex; justify-content: center; }
+
+  .hero-eyebrow { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 2rem; flex-wrap: wrap; opacity: 0; animation: fadeUp .6s .2s forwards; }
+  .eyebrow-badge { background: var(--accent-dim); color: var(--accent); font-size: 0.78rem; font-weight: 500; padding: 0.35rem 1rem; border-radius: 999px; }
+  .eyebrow-line { width: 32px; height: 1px; background: var(--gold); }
+  .eyebrow-text { font-size: 0.82rem; color: var(--muted); letter-spacing: 0.02em; }
+
+  .hero-title { font-weight: 400; font-size: clamp(2.8rem, 5vw, 5rem); line-height: 1.08; letter-spacing: -0.02em; color: var(--heading); margin-bottom: 1.8rem; opacity: 0; animation: fadeUp .7s .4s forwards; }
+  .hero-title .outline { font-style: italic; color: var(--accent); }
+  .hero-title .accent-word { color: var(--gold); font-style: italic; }
+
+  .hero-desc { color: var(--text); font-size: 1.05rem; line-height: 1.85; max-width: 46ch; margin-bottom: 2.2rem; opacity: 0; animation: fadeUp .7s .5s forwards; }
+  .hero-desc strong { color: var(--heading); font-weight: 500; }
+
+  .hero-cta-group { display: flex; gap: 1rem; flex-wrap: wrap; opacity: 0; animation: fadeUp .7s .6s forwards; }
+  .btn-primary { display: inline-block; background: var(--accent); color: #fff; padding: 0.95rem 2rem; font-family: 'Inter', sans-serif; font-size: 0.92rem; font-weight: 500; text-decoration: none; border-radius: 999px; box-shadow: 0 8px 24px rgba(63,107,91,0.25); transition: background .2s, transform .2s; white-space: nowrap; }
+  .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); }
+  .btn-ghost { display: inline-block; border: 1px solid rgba(47,74,63,0.25); color: var(--forest); padding: 0.95rem 2rem; font-size: 0.92rem; font-weight: 500; text-decoration: none; border-radius: 999px; transition: background .2s, border-color .2s; white-space: nowrap; text-align: center; }
+  .btn-ghost:hover { background: var(--accent-dim); border-color: var(--accent); }
+
+  /* PHOTO */
+  .photo-wrap { position: relative; width: 100%; max-width: 400px; opacity: 0; animation: fadeUp .8s .7s forwards; }
+  .photo-wrap::before { content: ''; position: absolute; inset: 18px -18px -18px 18px; border: 1px solid var(--gold); border-radius: 220px 220px 24px 24px; z-index: 0; opacity: 0.7; }
+  .photo-accent-line, .photo-accent-dot { display: none; }
+  .photo-img { position: relative; z-index: 1; width: 100%; display: block; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 12%; border-radius: 220px 220px 24px 24px; box-shadow: var(--shadow); }
+  .photo-tag { position: absolute; bottom: 28px; left: -24px; background: #fff; color: var(--forest); font-size: 0.82rem; font-weight: 500; padding: 0.6rem 1.2rem; border-radius: 999px; box-shadow: var(--shadow); z-index: 3; white-space: nowrap; }
+
+  /* STATS BAR */
+  .stats-bar { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, 1fr); background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .stat-block { padding: 2.2rem 3rem; border-right: 1px solid var(--border); text-align: center; }
+  .stat-block:last-child { border-right: none; }
+  .stat-num { font-size: 2.8rem; font-weight: 400; color: var(--accent); display: block; line-height: 1.1; }
+  .stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 0.4rem; display: block; }
+
+  /* MARQUEE */
+  .marquee-wrap { overflow: hidden; padding: 1.2rem 0; background: var(--bg); border-bottom: 1px solid var(--border); }
+  .marquee-track { display: flex; animation: marquee 40s linear infinite; white-space: nowrap; }
+  .marquee-item { display: flex; align-items: center; gap: 1rem; padding: 0 2rem; font-size: 0.85rem; color: var(--muted); }
+  .marquee-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* SHARED */
+  .section-tag { font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 1.2rem; }
+  .section-title { font-weight: 400; font-size: clamp(2rem, 3.4vw, 3rem); line-height: 1.15; color: var(--heading); letter-spacing: -0.015em; margin-bottom: 1.2rem; }
+  .section-body { color: var(--text); font-size: 1rem; line-height: 1.9; }
+
+  /* WHO I HELP */
+  #clients { display: grid; grid-template-columns: 1fr 1fr; background: var(--bg); }
+  .clients-left { padding: 6rem 3rem; display: flex; flex-direction: column; justify-content: space-between; gap: 2.5rem; }
+  .clients-right { padding: 6rem 3rem; display: flex; flex-direction: column; gap: 1.2rem; }
+  .client-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; transition: box-shadow .3s, transform .3s; }
+  .client-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+  .client-icon { font-size: 1.6rem; margin-bottom: 0.8rem; }
+  .client-title { font-weight: 500; color: var(--heading); font-size: 1.3rem; margin-bottom: 0.5rem; }
+  .client-desc { font-size: 0.92rem; color: var(--text); line-height: 1.8; }
+  .proof-badge { padding: 1.8rem 2rem; background: var(--sand); border-left: 3px solid var(--gold); border-radius: 0 var(--radius) var(--radius) 0; }
+  .proof-quote { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--heading); line-height: 1.7; margin-bottom: 1rem; font-style: italic; }
+  .proof-author { font-size: 0.82rem; color: var(--accent); font-weight: 500; }
+
+  /* SERVICES */
+  #services { background: var(--sand); padding-bottom: 6rem; }
+  .services-header { padding: 6rem 3rem 3rem; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; padding: 0 3rem; }
+  .service-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2.2rem 2rem; transition: box-shadow .3s, transform .3s; }
+  .service-item:hover { box-shadow: var(--shadow); transform: translateY(-4px); }
+  .service-num { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 1rem; }
+  .service-name { font-weight: 500; font-size: 1.3rem; color: var(--heading); margin-bottom: 0.8rem; line-height: 1.25; }
+  .service-desc { font-size: 0.92rem; color: var(--text); line-height: 1.8; margin-bottom: 1.4rem; }
+  .service-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+  .stag { font-size: 0.75rem; padding: 0.25rem 0.8rem; border-radius: 999px; background: var(--bg); color: var(--muted); border: 1px solid var(--border); }
+  .stag.y { background: var(--accent-dim); color: var(--accent); border-color: transparent; }
+
+  /* PROCESS */
+  #process { background: var(--bg); padding-bottom: 6rem; }
+  .process-header { padding: 6rem 3rem 3rem; }
+  .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; padding: 0 3rem; }
+  .step { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2.2rem 1.8rem; transition: box-shadow .3s; }
+  .step:hover { box-shadow: var(--shadow); }
+  .step-num { font-size: 3rem; font-weight: 300; color: rgba(184,149,106,0.55); line-height: 1; margin-bottom: 0.8rem; }
+  .step-arrow { display: none; }
+  .step-title { font-weight: 500; color: var(--heading); font-size: 1.15rem; margin-bottom: 0.6rem; }
+  .step-desc { font-size: 0.88rem; color: var(--text); line-height: 1.8; }
+
+  /* RESULTS */
+  #results { background: var(--forest); }
+  .results-inner { display: grid; grid-template-columns: 1fr 2fr; }
+  .results-left { padding: 6rem 3rem; }
+  .results-right { padding: 6rem 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  #results .section-tag { color: #D9BF96; }
+  #results .section-title { color: #F8F5F0; }
+  #results .section-body { color: rgba(248,245,240,0.78); }
+  .kpi-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius); padding: 2rem; }
+  .kpi-val { font-weight: 400; font-size: 3rem; color: #E9D7B5; line-height: 1.1; margin-bottom: 0.4rem; }
+  .kpi-label { font-size: 0.88rem; font-weight: 500; color: #F8F5F0; margin-bottom: 0.5rem; }
+  .kpi-desc { font-size: 0.85rem; color: rgba(248,245,240,0.7); line-height: 1.7; }
+
+  /* TESTIMONIALS */
+  #testimonials { background: var(--bg); padding-bottom: 6rem; }
+  .testi-header { padding: 6rem 3rem 3rem; }
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; padding: 0 3rem; }
+  .testi-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2.2rem 2rem; }
+  .testi-stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 0.15em; margin-bottom: 1rem; }
+  .testi-text { font-size: 0.95rem; color: var(--text); line-height: 1.85; margin-bottom: 1.5rem; }
+  .testi-author { border-top: 1px solid var(--border); padding-top: 1rem; }
+  .testi-name { font-weight: 500; color: var(--heading); font-size: 1.05rem; }
+  .testi-role { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
+
+  /* CONTACT */
+  #contact { padding: 7rem 3rem; display: flex; flex-direction: column; align-items: center; text-align: center; background: linear-gradient(180deg, var(--sand) 0%, var(--bg) 100%); }
+  .contact-tag { font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 1.2rem; }
+  .contact-title { font-weight: 400; font-size: clamp(2.4rem, 5vw, 4.5rem); line-height: 1.1; color: var(--heading); letter-spacing: -0.02em; margin-bottom: 1.4rem; }
+  .contact-title .outline { font-style: italic; color: var(--accent); }
+  .contact-sub { font-size: 1.02rem; color: var(--text); max-width: 46ch; line-height: 1.85; margin-bottom: 2.4rem; }
+  .contact-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2.5rem; }
+  .contact-socials { display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; }
+  .contact-socials a { font-size: 0.88rem; color: var(--muted); text-decoration: none; border-bottom: 1px solid transparent; transition: color .2s, border-color .2s; }
+  .contact-socials a:hover { color: var(--accent); border-color: var(--accent); }
+
+  footer { border-top: 1px solid var(--border); padding: 1.6rem 3rem; display: flex; justify-content: space-between; align-items: center; background: var(--bg); }
+  .footer-copy { font-size: 0.82rem; color: var(--muted); }
+  .footer-top { font-size: 0.82rem; color: var(--muted); text-decoration: none; transition: color .2s; }
+  .footer-top:hover { color: var(--accent); }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 960px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3.5rem; gap: 3rem; min-height: auto; }
+    .photo-wrap { max-width: 300px; margin: 0 auto; }
+    .photo-tag { left: 50%; transform: translateX(-50%); bottom: -14px; }
+    .stats-bar { grid-template-columns: 1fr; }
+    .stat-block { border-right: none; border-bottom: 1px solid var(--border); padding: 1.6rem; }
+    #clients { grid-template-columns: 1fr; }
+    .clients-left { padding: 4rem 1.5rem 1rem; }
+    .clients-right { padding: 1rem 1.5rem 4rem; }
+    .services-grid, .testi-grid, .process-steps { grid-template-columns: 1fr; padding: 0 1.5rem; }
+    .services-header, .process-header, .testi-header { padding: 4rem 1.5rem 2rem; }
+    .results-inner { grid-template-columns: 1fr; }
+    .results-left { padding: 4rem 1.5rem 1rem; }
+    .results-right { padding: 1rem 1.5rem 4rem; grid-template-columns: 1fr; }
+    #contact { padding: 4.5rem 1.5rem; }
+    footer { padding: 1.5rem; flex-direction: column; gap: 0.8rem; text-align: center; }
+  }
+
+  /* ===== NAVY & GOLD THEME ===== */
+  nav { background: rgba(11,31,58,0.96); border-bottom: 1px solid rgba(201,162,75,0.25); }
+  .nav-logo { color: #FAF7F0; }
+  .nav-links a { color: rgba(250,247,240,0.8); }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-cta { background: var(--gold); color: #0B1F3A; font-weight: 600; }
+  .nav-cta:hover { background: var(--gold-light); }
+
+  #hero { background: linear-gradient(135deg, #0B1F3A 0%, #12294A 100%); }
+  .eyebrow-badge { background: rgba(201,162,75,0.15); color: var(--gold-light); font-weight: 600; }
+  .eyebrow-line { background: var(--gold); }
+  .eyebrow-text { color: rgba(250,247,240,0.65); }
+  .hero-title { color: #FAF7F0; font-weight: 600; }
+  .hero-title .outline { color: var(--gold); font-style: italic; }
+  .hero-title .accent-word { color: #FAF7F0; font-style: italic; }
+  .hero-desc { color: rgba(250,247,240,0.82); }
+  .hero-desc strong { color: #FFFFFF; font-weight: 600; }
+
+  .btn-primary { background: var(--gold); color: #0B1F3A; font-weight: 600; box-shadow: 0 8px 24px rgba(201,162,75,0.3); }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-ghost { border: 1px solid rgba(250,247,240,0.35); color: #FAF7F0; }
+  .btn-ghost:hover { background: rgba(250,247,240,0.08); border-color: var(--gold); }
+
+  .photo-wrap::before { border-color: var(--gold); opacity: 0.9; }
+  .photo-img { box-shadow: 0 20px 60px rgba(0,0,0,0.35); }
+  .photo-tag { background: var(--gold); color: #0B1F3A; font-weight: 600; }
+
+  .stat-num { color: var(--accent); font-weight: 600; }
+  .section-tag, .service-num { color: var(--gold-deep); font-weight: 600; }
+  .section-title { font-weight: 600; }
+  .client-title, .service-name, .step-title, .testi-name { font-weight: 600; }
+  .proof-author { color: var(--gold-deep); font-weight: 600; }
+  .proof-badge { border-left-color: var(--gold); }
+  .step-num { color: rgba(201,162,75,0.65); font-weight: 600; }
+  .stag.y { background: rgba(201,162,75,0.16); color: var(--gold-deep); }
+  .testi-stars { color: var(--gold); }
+
+  #results { background: linear-gradient(135deg, #0B1F3A 0%, #12294A 100%); }
+  #results .section-tag { color: var(--gold-light); }
+  .kpi-val { color: var(--gold-light); font-weight: 600; }
+  .kpi-card { border-color: rgba(201,162,75,0.25); }
+
+  #contact { background: linear-gradient(135deg, #0B1F3A 0%, #12294A 100%); }
+  .contact-tag { color: var(--gold-light); font-weight: 600; }
+  .contact-title { color: #FAF7F0; font-weight: 600; }
+  .contact-title .outline { color: var(--gold); font-style: italic; }
+  .contact-sub { color: rgba(250,247,240,0.82); }
+  .contact-socials a { color: rgba(250,247,240,0.7); }
+  .contact-socials a:hover { color: var(--gold-light); border-color: var(--gold); }
+
+  footer { background: #06122A; border-top: 1px solid rgba(201,162,75,0.25); }
+  .footer-copy, .footer-top { color: rgba(250,247,240,0.6); }
+  .footer-top:hover { color: var(--gold-light); }
+
+  /* ===== UPDATE: no-photo hero, name highlight, tools, value ===== */
+  .hero-hello { color: rgba(250,247,240,0.7); font-size: 0.95rem; margin-bottom: 0.3rem; opacity: 0; animation: fadeUp .6s .3s forwards; }
+  .hero-name { font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(2.1rem, 4vw, 3.5rem); line-height: 1.15; color: var(--gold-light); margin-bottom: 0.7rem; opacity: 0; animation: fadeUp .6s .35s forwards; }
+  .hero-name span { background: linear-gradient(transparent 62%, rgba(201,162,75,0.5) 62%); padding: 0 0.15em; margin-left: -0.15em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  .hero-role { color: rgba(250,247,240,0.85); font-size: 0.98rem; font-weight: 500; letter-spacing: 0.03em; margin-bottom: 2rem; opacity: 0; animation: fadeUp .6s .4s forwards; }
+  .hero-title { font-size: clamp(2.4rem, 4.2vw, 4.2rem); }
+  .hero-right { align-items: center; }
+
+  .rhythm-card { width: 100%; max-width: 440px; background: rgba(255,255,255,0.06); border: 1px solid rgba(201,162,75,0.3); border-radius: 20px; padding: 2.2rem; opacity: 0; animation: fadeUp .8s .7s forwards; }
+  .rhythm-label { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-light); font-weight: 600; margin-bottom: 1.4rem; }
+  .rhythm-item { display: flex; gap: 1.2rem; padding: 1.1rem 0; border-top: 1px solid rgba(250,247,240,0.12); }
+  .rhythm-item:first-of-type { border-top: none; padding-top: 0; }
+  .rhythm-item:last-child { padding-bottom: 0; }
+  .rhythm-num { font-family: 'Playfair Display', serif; font-size: 1.7rem; color: var(--gold); line-height: 1; min-width: 2.2rem; }
+  .rhythm-title { font-family: 'Playfair Display', serif; color: #FAF7F0; font-size: 1.2rem; font-weight: 600; margin-bottom: 0.2rem; }
+  .rhythm-desc { color: rgba(250,247,240,0.72); font-size: 0.88rem; line-height: 1.65; }
+
+  #tools { background: var(--surface); padding-bottom: 6rem; }
+  .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; padding: 0 3rem; }
+  .tool-item { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.6rem 1.7rem; border-top: 3px solid var(--gold); transition: box-shadow .3s, transform .3s; }
+  .tool-item:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+  .tool-name { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1.15rem; color: var(--heading); margin-bottom: 0.4rem; }
+  .tool-use { font-size: 0.88rem; color: var(--text); line-height: 1.7; }
+
+  #results .kpi-label { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem; }
+  #results .kpi-card:last-child { grid-column: 1 / -1; }
+
+  @media (max-width: 960px) {
+    .tools-grid { grid-template-columns: 1fr 1fr; padding: 0 1.5rem; }
+    .rhythm-card { max-width: 100%; }
+  }
+  @media (max-width: 600px) {
+    .tools-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <a href="#" class="nav-logo"><span class="nav-logo-dot"></span> John Matthew Dueñas</a>
+  <ul class="nav-links">
+    <li><a href="#clients">Who I Help</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://calendly.com/johnmatthew-duenas24/discovery-call-let-matt-free-up-your-time" target="_blank" class="nav-cta">Book a Call</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-badge">Available Now</span>
+      <span class="eyebrow-line"></span>
+    </div>
+    <p class="hero-hello">Hi, I'm</p>
+    <p class="hero-name"><span>John Matthew Dueñas</span></p>
+    <p class="hero-role">Operations and Business Assistance | Fitness Coaching</p>
+    <h1 class="hero-title">
+      You Coach.<br>
+      <span class="outline">I'll Handle</span><br>
+      <span class="accent-word">the Rest.</span>
+    </h1>
+    <p class="hero-desc">
+      I work with <strong>online fitness coaching business owners</strong> to free up <strong>300+ hours a month</strong> — so they can stay focused on growing their brand, delivering results, and doing the work only they can do.
+    </p>
+    <div class="hero-cta-group">
+      <a href="https://calendly.com/johnmatthew-duenas24/discovery-call-let-matt-free-up-your-time" target="_blank" class="btn-primary">Book a Discovery Call →</a>
+      <a href="#services" class="btn-ghost">See What I Do</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="rhythm-card">
+      <p class="rhythm-label">The operating rhythm I create</p>
+      <div class="rhythm-item">
+        <span class="rhythm-num">1</span>
+        <div><p class="rhythm-title">Capture</p><p class="rhythm-desc">Keep leads, appointments, client activity, and operational inputs organised in the right system.</p></div>
+      </div>
+      <div class="rhythm-item">
+        <span class="rhythm-num">2</span>
+        <div><p class="rhythm-title">Check</p><p class="rhythm-desc">Review the numbers and workflows for gaps, changes, missed follow-ups, and risks.</p></div>
+      </div>
+      <div class="rhythm-item">
+        <span class="rhythm-num">3</span>
+        <div><p class="rhythm-title">Explain</p><p class="rhythm-desc">Summarise what happened and why it matters in plain business language.</p></div>
+      </div>
+      <div class="rhythm-item">
+        <span class="rhythm-num">4</span>
+        <div><p class="rhythm-title">Act</p><p class="rhythm-desc">Recommend or support the next practical action, then keep the workflow moving.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-block reveal">
+    <span class="stat-num">300+</span>
+    <span class="stat-label">Hours freed up per client, per month</span>
+  </div>
+  <div class="stat-block reveal">
+    <span class="stat-num">7yr</span>
+    <span class="stat-label">Of operations experience</span>
+  </div>
+  <div class="stat-block reveal">
+    <span class="stat-num">15</span>
+    <span class="stat-label">Tools &amp; platforms I work in</span>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="marquee-dot"></span>Weekly KPI Reporting</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Lead &amp; Appointment Tracking</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Retention Monitoring</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>CRM &amp; Automations</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Community Management</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Client Onboarding</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Ads Reporting</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Payment Tracking</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Renewal Reporting</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Process Documentation</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Weekly KPI Reporting</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Lead &amp; Appointment Tracking</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Retention Monitoring</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>CRM &amp; Automations</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Community Management</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Client Onboarding</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Ads Reporting</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Payment Tracking</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Renewal Reporting</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Process Documentation</span>
+  </div>
+</div>
+
+<!-- WHO I HELP -->
+<section id="clients">
+  <div class="clients-left reveal">
+    <div>
+      <p class="section-tag">01 — Who I Help</p>
+      <h2 class="section-title">For online fitness coaches ready to scale.</h2>
+      <p class="section-body">I support online fitness coaches as an operations partner — not simply as an administrator. I understand how lead generation, appointments, sales conversion, onboarding, client check-ins, retention, coach performance, and revenue reporting connect, so the work gets organised with the business outcome in mind.</p>
+    </div>
+    <div class="proof-badge">
+      <p class="proof-quote">My strength is turning day-to-day information into useful operational visibility: what changed, why it matters, where attention is needed, and what action should happen next.</p>
+      <p class="proof-author">— John Matthew Dueñas</p>
+    </div>
+  </div>
+  <div class="clients-right reveal">
+    <div class="client-card">
+      <div class="client-icon">📱</div>
+      <p class="client-title">Online Fitness Coaches</p>
+      <p class="client-desc">1:1 and group coaches scaling their programs — I handle the back-end operations so you stay focused on coaching, content, and growing your client base.</p>
+    </div>
+    <div class="client-card">
+      <div class="client-icon">🚀</div>
+      <p class="client-title">Fitness Entrepreneurs</p>
+      <p class="client-desc">Building a course, community, or hybrid coaching brand? I plug in as your operations partner, managing systems, reporting, and daily tasks so you can lead.</p>
+    </div>
+    <div class="client-card">
+      <div class="client-icon">📈</div>
+      <p class="client-title">Scaling Fitness Business Owners</p>
+      <p class="client-desc">Ready to grow but can't afford to spend time on admin? I build and manage the operational infrastructure your business needs to scale without the chaos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header reveal">
+    <p class="section-tag">02 — Services</p>
+    <h2 class="section-title">What I can take off your plate.</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-item reveal">
+      <p class="service-num">01 — Reporting</p>
+      <h3 class="service-name">Weekly Business Performance Reporting</h3>
+      <p class="service-desc">Consolidate sales and operations data into concise management summaries, highlighting trends, gaps, and priorities.</p>
+      <div class="service-tags"><span class="stag y">Google Sheets</span><span class="stag y">Excel</span><span class="stag">Weekly Reports</span></div>
+    </div>
+    <div class="service-item reveal">
+      <p class="service-num">02 — Pipeline</p>
+      <h3 class="service-name">Lead Pipeline &amp; Appointment Tracking</h3>
+      <p class="service-desc">Keep lead stages, booked appointments, show rates, follow-ups, and conversion activity organised and visible.</p>
+      <div class="service-tags"><span class="stag y">GoHighLevel</span><span class="stag y">ManyChat</span><span class="stag">Show Rates</span></div>
+    </div>
+    <div class="service-item reveal">
+      <p class="service-num">03 — Retention</p>
+      <h3 class="service-name">Client Check-in &amp; Retention Monitoring</h3>
+      <p class="service-desc">Maintain check-in workflows, surface missed touchpoints, and help identify retention or churn risks early.</p>
+      <div class="service-tags"><span class="stag y">Kahunas</span><span class="stag">Check-ins</span><span class="stag">Churn Risk</span></div>
+    </div>
+    <div class="service-item reveal">
+      <p class="service-num">04 — CRM</p>
+      <h3 class="service-name">CRM &amp; Automation Monitoring</h3>
+      <p class="service-desc">Check that workflows, tags, automations, forms, and handoffs are working as intended.</p>
+      <div class="service-tags"><span class="stag y">GoHighLevel</span><span class="stag">Tags &amp; Forms</span><span class="stag">Automations</span></div>
+    </div>
+    <div class="service-item reveal">
+      <p class="service-num">05 — Community</p>
+      <h3 class="service-name">Community Management &amp; Client Communication</h3>
+      <p class="service-desc">Support timely, organised communication so clients feel seen and coaches can stay focused on delivery.</p>
+      <div class="service-tags"><span class="stag y">Community</span><span class="stag">Slack</span><span class="stag">ManyChat</span></div>
+    </div>
+    <div class="service-item reveal">
+      <p class="service-num">06 — Process</p>
+      <h3 class="service-name">Operational Organisation &amp; Process Improvement</h3>
+      <p class="service-desc">Document repeatable processes, remove avoidable friction, and create clearer ownership across the backend.</p>
+      <div class="service-tags"><span class="stag y">Notion</span><span class="stag y">monday.com</span><span class="stag">SOPs</span></div>
+    </div>
+    <div class="service-item reveal">
+      <p class="service-num">07 — Onboarding</p>
+      <h3 class="service-name">Client Onboarding Coordination</h3>
+      <p class="service-desc">Assign clients to the appropriate coach, manage client data in coaching tools, and coordinate onboarding messages.</p>
+      <div class="service-tags"><span class="stag y">Kahunas</span><span class="stag y">1Fit</span><span class="stag">Clubfit</span></div>
+    </div>
+    <div class="service-item reveal">
+      <p class="service-num">08 — Ads</p>
+      <h3 class="service-name">Ads Data Management</h3>
+      <p class="service-desc">Track advertising performance in Meta Business Suite and prepare clear ad reports for clients.</p>
+      <div class="service-tags"><span class="stag y">Meta Business Suite</span><span class="stag">Ad Reports</span></div>
+    </div>
+    <div class="service-item reveal">
+      <p class="service-num">09 — Payments</p>
+      <h3 class="service-name">Payment Tracking &amp; Late-Payment Monitoring</h3>
+      <p class="service-desc">Use Newie and Stripe to monitor payment status, flag overdue accounts, and keep owners informed.</p>
+      <div class="service-tags"><span class="stag y">Newie</span><span class="stag y">Stripe</span><span class="stag">Overdue Flags</span></div>
+    </div>
+    <div class="service-item reveal">
+      <p class="service-num">10 — Renewals</p>
+      <h3 class="service-name">Client End-Date &amp; Renewal Reporting</h3>
+      <p class="service-desc">Identify clients whose programmes are nearing completion so owners can plan renewal conversations and follow-ups.</p>
+      <div class="service-tags"><span class="stag y">Renewals</span><span class="stag">End-Date Reports</span></div>
+    </div>
+    <div class="service-item reveal">
+      <p class="service-num">11 — Automations</p>
+      <h3 class="service-name">Call Reminder &amp; Confirmation Automations</h3>
+      <p class="service-desc">Set up and monitor GHL workflows that send reminders and confirmations for scheduled calls.</p>
+      <div class="service-tags"><span class="stag y">GoHighLevel</span><span class="stag">Reminders</span><span class="stag">Confirmations</span></div>
+    </div>
+    <div class="service-item reveal">
+      <p class="service-num">12 — Admin</p>
+      <h3 class="service-name">Inbox, Calendar &amp; Admin Support</h3>
+      <p class="service-desc">Inbox triage, calendar management, scheduling, and daily admin so your time stays protected for the work only you can do.</p>
+      <div class="service-tags"><span class="stag y">Google Workspace</span><span class="stag">Inbox</span><span class="stag">Calendar</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools">
+  <div class="services-header reveal">
+    <p class="section-tag">03 — Tools</p>
+    <h2 class="section-title">The tools I use in real operations.</h2>
+    <p class="section-body" style="max-width:62ch;">The tools matter because they support a workflow. I use them to keep information moving between marketing, sales, delivery, and reporting — not as isolated software tasks.</p>
+  </div>
+  <div class="tools-grid">
+    <div class="tool-item reveal"><p class="tool-name">GoHighLevel (GHL)</p><p class="tool-use">Lead pipelines, appointments, follow-ups, tags, forms, automations, call reminders, confirmations, and reporting inputs.</p></div>
+    <div class="tool-item reveal"><p class="tool-name">ManyChat</p><p class="tool-use">Lead capture, nurture conversations, handoffs, and next-step follow-up.</p></div>
+    <div class="tool-item reveal"><p class="tool-name">Kahunas</p><p class="tool-use">Client and coaching workflows, onboarding, check-ins, programme delivery, and organisation.</p></div>
+    <div class="tool-item reveal"><p class="tool-name">1Fit</p><p class="tool-use">Client records, programme support, and day-to-day coaching operations.</p></div>
+    <div class="tool-item reveal"><p class="tool-name">Clubfit</p><p class="tool-use">Client records, scheduling, and coach workflow support.</p></div>
+    <div class="tool-item reveal"><p class="tool-name">Coach Vault</p><p class="tool-use">Client and coaching resource organisation and reference.</p></div>
+    <div class="tool-item reveal"><p class="tool-name">Notion</p><p class="tool-use">SOPs, knowledge management, process documentation, and shared operating notes.</p></div>
+    <div class="tool-item reveal"><p class="tool-name">Slack</p><p class="tool-use">Team communication, quick updates, and operational handoffs.</p></div>
+    <div class="tool-item reveal"><p class="tool-name">monday.com</p><p class="tool-use">Task ownership, deadlines, workflow visibility, and follow-through.</p></div>
+    <div class="tool-item reveal"><p class="tool-name">Microsoft Excel</p><p class="tool-use">Detailed trackers, data checks, and sales or advertising analysis.</p></div>
+    <div class="tool-item reveal"><p class="tool-name">Google Workspace</p><p class="tool-use">Shared files, documents, calendars, and team collaboration.</p></div>
+    <div class="tool-item reveal"><p class="tool-name">Google Sheets</p><p class="tool-use">Weekly KPI trackers, data consolidation, and management reporting.</p></div>
+    <div class="tool-item reveal"><p class="tool-name">Meta Business Suite</p><p class="tool-use">Ad data tracking and client-facing advertising performance reports.</p></div>
+    <div class="tool-item reveal"><p class="tool-name">Newie</p><p class="tool-use">Payment tracking, payment-status monitoring, and late-payment follow-up.</p></div>
+    <div class="tool-item reveal"><p class="tool-name">Stripe</p><p class="tool-use">Payment monitoring, transaction visibility, and reporting support.</p></div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="process-header reveal">
+    <p class="section-tag">04 — How It Works</p>
+    <h2 class="section-title">Simple onboarding. Fast results.</h2>
+  </div>
+  <div class="process-steps">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <h3 class="step-title">Discovery Call</h3>
+      <p class="step-desc">We map your biggest operational bottlenecks and identify exactly where your time is being lost.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">02</div>
+      <h3 class="step-title">Custom Ops Plan</h3>
+      <p class="step-desc">I build a tailored plan covering which tasks I'll own, the tools we'll use, and how we'll measure success together.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">03</div>
+      <h3 class="step-title">I Take Over</h3>
+      <p class="step-desc">I plug into your systems and start handling operations, so you feel the difference quickly.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">04</div>
+      <h3 class="step-title">Weekly Check-In</h3>
+      <p class="step-desc">Every week you get a brief report of what was done, what changed, and what's next. Full visibility, zero micromanaging.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE -->
+<section id="results">
+  <div class="results-inner">
+    <div class="results-left reveal">
+      <p class="section-tag">05 — The Business Value</p>
+      <h2 class="section-title">How the work creates value for your business.</h2>
+      <p class="section-body" style="margin-top:1rem;">Every task is tied to a business outcome — so you can see where the pipeline is strong, where it is leaking, and what to do next.</p>
+    </div>
+    <div class="results-right">
+      <div class="kpi-card reveal">
+        <p class="kpi-label">Sales &amp; Appointments</p>
+        <p class="kpi-desc">Track lead sources, appointments, show rates, conversions, and revenue so the team can see where the pipeline is strong or leaking.</p>
+      </div>
+      <div class="kpi-card reveal">
+        <p class="kpi-label">Coaching Operations</p>
+        <p class="kpi-desc">Maintain visibility across coach activity, client touchpoints, follow-ups, and operational priorities.</p>
+      </div>
+      <div class="kpi-card reveal">
+        <p class="kpi-label">Retention &amp; Churn</p>
+        <p class="kpi-desc">Monitor engagement and check-in patterns, helping the business spot risks before they become cancellations.</p>
+      </div>
+      <div class="kpi-card reveal">
+        <p class="kpi-label">Management Reporting</p>
+        <p class="kpi-desc">Turn raw data into a clear weekly summary with observations, implications, and recommended next actions.</p>
+      </div>
+      <div class="kpi-card reveal">
+        <p class="kpi-label">Payments &amp; Renewals</p>
+        <p class="kpi-desc">Monitor late payments and upcoming client end dates so owners can follow up, plan renewal conversations, and protect continuity of service.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="testi-header reveal">
+    <p class="section-tag">06 — Testimonials</p>
+    <h2 class="section-title">Coaches who got their time back.</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-item reveal">
+      <p class="testi-stars">★ ★ ★ ★ ★</p>
+      <p class="testi-text">"I was spending hours every week on admin that had nothing to do with coaching. Matt took it all off my plate. Now I'm fully focused on my clients and my business is growing faster than ever."</p>
+      <div class="testi-author"><p class="testi-name">Jamie L.</p><p class="testi-role">Online Fitness Coach · 300+ clients</p></div>
+    </div>
+    <div class="testi-item reveal">
+      <p class="testi-stars">★ ★ ★ ★ ★</p>
+      <p class="testi-text">"The weekly report Matt built shows me everything I need every Monday morning. I finally understand my business numbers and I'm making better decisions because of it."</p>
+      <div class="testi-author"><p class="testi-name">Darren M.</p><p class="testi-role">Online Strength Coach · Fitness Entrepreneur</p></div>
+    </div>
+    <div class="testi-item reveal">
+      <p class="testi-stars">★ ★ ★ ★ ★</p>
+      <p class="testi-text">"Matt keeps my pipeline, check-ins, and payments organised and tells me what needs attention. He's become my business partner behind the scenes. Couldn't scale without him."</p>
+      <div class="testi-author"><p class="testi-name">Priya S.</p><p class="testi-role">Online Coach · Group Program Creator</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="contact-tag reveal">07 — Let's Work Together</p>
+  <h2 class="contact-title reveal">Ready to focus on<br><span class="outline">what matters most?</span></h2>
+  <p class="contact-sub reveal">Book a free discovery call. No pitch, no pressure — just a clear look at where you're losing time and how I can help you get it back so you can focus on what truly matters.</p>
+  <div class="contact-actions reveal">
+    <a href="https://calendly.com/johnmatthew-duenas24/discovery-call-let-matt-free-up-your-time" target="_blank" class="btn-primary">Book a Discovery Call →</a>
+    <a href="mailto:johnmatthew.duenas24@gmail.com" class="btn-ghost">Send an Email</a>
+  </div>
+  <div class="contact-socials reveal">
+    <a href="https://www.linkedin.com/in/johnmatthewduenas/" target="_blank">LinkedIn</a>
+    <a href="https://www.instagram.com/janmachuu/" target="_blank">Instagram</a>
+    <a href="https://wa.me/639926093742" target="_blank">WhatsApp</a>
+    <a href="mailto:johnmatthew.duenas24@gmail.com">Email</a>
+  </div>
+</section>
+
+<footer>
+  <p class="footer-copy">© 2026 John Matthew Dueñas — Operations and Business Assistance | Fitness Coaching</p>
+  <a href="#" class="footer-top">↑ Back to top</a>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.style.padding = window.scrollY > 60 ? '0.9rem 3rem' : '1.2rem 3rem';
+  });
+</script>
+
+</body>
+</html>
